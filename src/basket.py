@@ -22,4 +22,4 @@ class Basket:
     @property
     def total(self) -> int:
         """The total of the items in the basket."""
-        return 0
+        return sum([item.price for item in self.items])
