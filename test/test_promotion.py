@@ -8,7 +8,7 @@ def builder():
     return item.ItemBuilder()
 
 
-def test_promotion_a_initialiseabl():
+def test_promotion_a_initialiseable():
     """Test the promotion on A can be initialised without exception."""
     assert promotion.ProAs()
 
@@ -46,8 +46,39 @@ def test_with_two_as_basket_is_unchanged_after_apply(builder):
 
 
 def test_with_three_as_basket_is_changed_after_apply(builder):
-    """An a basket with two A will shouldn't be changed by applying the As promotion."""
+    """An a basket with three A will should be changed by applying the As promotion."""
     bas = basket.Basket([builder.get_a(), builder.get_a(), builder.get_a()])
     promo = promotion.ProAs()
     bas = promo.apply(bas)
     assert bas.total == 130
+
+
+def test_with_four_as_basket_is_changed_after_apply(builder):
+    """An a basket with 4 A will should be changed by applying the As promotion."""
+    bas = basket.Basket([builder.get_a(), builder.get_a(), builder.get_a(), 
+                        builder.get_a()])
+    promo = promotion.ProAs()
+    bas = promo.apply(bas)
+    assert bas.total == 180
+
+
+def test_with_four_as_basket_is_changed_once_only(builder):
+    """An a basket with 4 A will should only be changed once by applying the
+    As promotion."""
+    bas = basket.Basket([builder.get_a(), builder.get_a(), builder.get_a(), 
+                        builder.get_a()])
+    promo = promotion.ProAs()
+    bas = promo.apply(bas)
+    bas = promo.apply(bas)
+    assert bas.total == 180
+
+
+def test_with_six_as_basket_is_changed_once_only(builder):
+    """An a basket with 6 A will should be changed by applying the
+    As promotion."""
+    bas = basket.Basket([builder.get_a(), builder.get_a(), builder.get_a(), 
+                        builder.get_a(), builder.get_a(), builder.get_a()])
+    promo = promotion.ProAs()
+    bas = promo.apply(bas)
+    bas = promo.apply(bas)
+    assert bas.total == 260
