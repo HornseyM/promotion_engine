@@ -1,5 +1,6 @@
 """Module to contain the item class."""
 
+
 class Item:
     """An item, suitable for adding to a basket.
     
@@ -20,3 +21,6 @@ class Item:
     def price(self) -> int:
         """Return the price variable."""
         return self._price
+
+class ItemBuilder():
+    """Class to build and return items consistently and correctly."""
