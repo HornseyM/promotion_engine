@@ -58,5 +58,5 @@ def test_build_item_d_with_name():
 def test_build_item_d_with_price():
     """Item Builder should be able to build item D with correct price."""
     builder = item.ItemBuilder
-    sku = builder.get_D()
+    sku = builder.get_d()
     assert sku.price == 15
