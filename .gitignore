@@ -5,3 +5,6 @@ __pycache__/
 
 # virtualenv
 venv/
+
+# VS Code setup
+.vscode/
