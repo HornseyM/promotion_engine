@@ -14,6 +14,8 @@ class Promotion(ABC):
         promotion classes should imlement.
         
         :param bas: The basket to apply the promotion to.
+
+        :returns: The basket with the promotion applied. 
         """
 
     @staticmethod
@@ -76,7 +78,7 @@ class ProBs(Promotion):
         there are enough Bs, otherwise leaves it unchanged.
         
         :param bas: The basket to apply the promotion to.
-        
+
         :returns: The basket with the promotion applied.
         """
         return self._apply_n_items(bas, 'B', 2, Item("2 bs for 450", 45))

@@ -26,21 +26,21 @@ class ItemBuilder():
     """Class to build and return items consistently and correctly."""
 
     @staticmethod
-    def get_a():
+    def get_a() -> Item:
         """Return an 'A' item which costs 50."""
         return Item('A', 50)
 
     @staticmethod
-    def get_b():
+    def get_b() -> Item:
         """Return an 'B' item which costs 30."""
         return Item('B', 30)
 
     @staticmethod
-    def get_c():
+    def get_c() -> Item:
         """Return an 'C' item which costs 20."""
         return Item('C', 20)
 
     @staticmethod
-    def get_d():
+    def get_d() -> Item:
         """Return an 'D' item which costs 15."""
         return Item('D', 15)
