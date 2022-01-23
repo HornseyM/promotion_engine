@@ -15,7 +15,9 @@ def test_promotion_a_initialiseable():
 
 def test_empty_basket_is_unchanged_after_apply():
     """An empty basket shouldn't be changed by applying the As promotion."""
+    # Build the basket
     bas = basket.Basket()
+    # Apply the promotion
     promo = promotion.ProAs()
     bas = promo.apply(bas)
     assert bas.total == 0
@@ -23,7 +25,9 @@ def test_empty_basket_is_unchanged_after_apply():
 
 def test_with_no_as_basket_is_unchanged_after_apply(builder):
     """An a basket with no As will shouldn't be changed by applying the As promotion."""
+    # Build the basket
     bas = basket.Basket([builder.get_b(), builder.get_c(), builder.get_d()])
+    # Apply the promotion
     promo = promotion.ProAs()
     bas = promo.apply(bas)
     assert bas.total == 65
@@ -31,7 +35,9 @@ def test_with_no_as_basket_is_unchanged_after_apply(builder):
 
 def test_with_one_a_basket_is_unchanged_after_apply(builder):
     """An a basket with one A will shouldn't be changed by applying the As promotion."""
+    # Build the basket
     bas = basket.Basket([builder.get_a(), builder.get_c(), builder.get_d()])
+    # Apply the promotion
     promo = promotion.ProAs()
     bas = promo.apply(bas)
     assert bas.total == 85
@@ -39,7 +45,9 @@ def test_with_one_a_basket_is_unchanged_after_apply(builder):
 
 def test_with_two_as_basket_is_unchanged_after_apply(builder):
     """An a basket with two A will shouldn't be changed by applying the As promotion."""
+    # Build the basket
     bas = basket.Basket([builder.get_a(), builder.get_a(), builder.get_d()])
+    # Apply the promotion
     promo = promotion.ProAs()
     bas = promo.apply(bas)
     assert bas.total == 115
@@ -47,7 +55,9 @@ def test_with_two_as_basket_is_unchanged_after_apply(builder):
 
 def test_with_three_as_basket_is_changed_after_apply(builder):
     """An a basket with three A will should be changed by applying the As promotion."""
+    # Build the basket
     bas = basket.Basket([builder.get_a(), builder.get_a(), builder.get_a()])
+    # Apply the promotion
     promo = promotion.ProAs()
     bas = promo.apply(bas)
     assert bas.total == 130
@@ -55,8 +65,10 @@ def test_with_three_as_basket_is_changed_after_apply(builder):
 
 def test_with_four_as_basket_is_changed_after_apply(builder):
     """An a basket with 4 A will should be changed by applying the As promotion."""
+    # Build the basket
     bas = basket.Basket([builder.get_a(), builder.get_a(), builder.get_a(), 
                         builder.get_a()])
+    # Apply the promotion
     promo = promotion.ProAs()
     bas = promo.apply(bas)
     assert bas.total == 180
@@ -65,8 +77,10 @@ def test_with_four_as_basket_is_changed_after_apply(builder):
 def test_with_four_as_basket_is_changed_once_only(builder):
     """An a basket with 4 A will should only be changed once by applying the
     As promotion."""
+    # Build the basket
     bas = basket.Basket([builder.get_a(), builder.get_a(), builder.get_a(), 
                         builder.get_a()])
+    # Apply the promotion
     promo = promotion.ProAs()
     bas = promo.apply(bas)
     bas = promo.apply(bas)
@@ -76,8 +90,10 @@ def test_with_four_as_basket_is_changed_once_only(builder):
 def test_with_six_as_basket_is_changed_once_only(builder):
     """An a basket with 6 A will should be changed by applying the
     As promotion."""
+    # Build the basket
     bas = basket.Basket([builder.get_a(), builder.get_a(), builder.get_a(), 
                         builder.get_a(), builder.get_a(), builder.get_a()])
+    # Apply the promotion
     promo = promotion.ProAs()
     bas = promo.apply(bas)
     bas = promo.apply(bas)
@@ -95,7 +111,9 @@ def test_promotion_b_initialiseable():
 
 def test_empty_basket_is_unchanged_after_apply_b():
     """An empty basket shouldn't be changed by applying the Bs promotion."""
+    # Build the basket
     bas = basket.Basket()
+    # Apply the promotion
     promo = promotion.ProBs()
     bas = promo.apply(bas)
     assert bas.total == 0
@@ -103,7 +121,9 @@ def test_empty_basket_is_unchanged_after_apply_b():
 
 def test_with_no_bs_basket_is_unchanged_after_apply_b(builder):
     """An a basket with no Bs will shouldn't be changed by applying the Bs promotion."""
+    # Build the basket
     bas = basket.Basket([builder.get_a(), builder.get_c(), builder.get_d()])
+    # Apply the promotion
     promo = promotion.ProBs()
     bas = promo.apply(bas)
     assert bas.total == 85
@@ -111,7 +131,9 @@ def test_with_no_bs_basket_is_unchanged_after_apply_b(builder):
 
 def test_with_one_b_basket_is_unchanged_after_apply(builder):
     """An a basket with one B will shouldn't be changed by applying the Bs promotion."""
+    # Build the basket
     bas = basket.Basket([builder.get_b(), builder.get_c(), builder.get_d()])
+    # Apply the promotion
     promo = promotion.ProBs()
     bas = promo.apply(bas)
     assert bas.total == 65
@@ -119,7 +141,42 @@ def test_with_one_b_basket_is_unchanged_after_apply(builder):
 
 def test_with_two_bs_basket_is_changed_after_apply(builder):
     """An a basket with two B will should be changed by applying the Bs promotion."""
+    # Build the basket
     bas = basket.Basket([builder.get_b(), builder.get_b(), builder.get_d()])
+    # Apply the promotion
     promo = promotion.ProBs()
     bas = promo.apply(bas)
     assert bas.total == 60
+
+
+def test_with_three_bs_basket_is_changed_after_apply(builder):
+    """An a basket with 3 B will should be changed by applying the Bs promotion."""
+    # Build the basket
+    bas = basket.Basket([builder.get_b(), builder.get_b(), builder.get_b()])
+    # Apply the promotion
+    promo = promotion.ProBs()
+    bas = promo.apply(bas)
+    assert bas.total == 75
+
+
+def test_with_three_bs_basket_is_changed_only_onces(builder):
+    """An a basket with 3 B will should be changed by applying the Bs promotion, but only the first time."""
+    # Build the basket
+    bas = basket.Basket([builder.get_b(), builder.get_b(), builder.get_b()])
+    # Apply the promotion
+    promo = promotion.ProBs()
+    bas = promo.apply(bas)
+    bas = promo.apply(bas)
+    assert bas.total == 75
+
+
+def test_with_five_bs_basket_is_changed_after_apply(builder):
+    """An a basket with 5 B will should be changed by applying the Bs promotion."""
+    # Build the basket
+    bas = basket.Basket([builder.get_b(), builder.get_b(), builder.get_b(),
+                        builder.get_b(), builder.get_b()])
+    # Apply the promotion
+    promo = promotion.ProBs()
+    bas = promo.apply(bas)
+    bas = promo.apply(bas)
+    assert bas.total == 120
