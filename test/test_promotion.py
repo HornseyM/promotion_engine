@@ -82,3 +82,44 @@ def test_with_six_as_basket_is_changed_once_only(builder):
     bas = promo.apply(bas)
     bas = promo.apply(bas)
     assert bas.total == 260
+    
+###
+
+
+
+
+def test_promotion_b_initialiseable():
+    """Test the promotion on B can be initialised without exception."""
+    assert promotion.ProBs()
+
+
+def test_empty_basket_is_unchanged_after_apply_b():
+    """An empty basket shouldn't be changed by applying the Bs promotion."""
+    bas = basket.Basket()
+    promo = promotion.ProBs()
+    bas = promo.apply(bas)
+    assert bas.total == 0
+
+
+def test_with_no_bs_basket_is_unchanged_after_apply_b(builder):
+    """An a basket with no Bs will shouldn't be changed by applying the Bs promotion."""
+    bas = basket.Basket([builder.get_a(), builder.get_c(), builder.get_d()])
+    promo = promotion.ProBs()
+    bas = promo.apply(bas)
+    assert bas.total == 85
+
+
+def test_with_one_b_basket_is_unchanged_after_apply(builder):
+    """An a basket with one B will shouldn't be changed by applying the Bs promotion."""
+    bas = basket.Basket([builder.get_b(), builder.get_c(), builder.get_d()])
+    promo = promotion.ProBs()
+    bas = promo.apply(bas)
+    assert bas.total == 65
+
+
+def test_with_two_bs_basket_is_changed_after_apply(builder):
+    """An a basket with two B will should be changed by applying the Bs promotion."""
+    bas = basket.Basket([builder.get_b(), builder.get_b(), builder.get_d()])
+    promo = promotion.ProBs()
+    bas = promo.apply(bas)
+    assert bas.total == 60
