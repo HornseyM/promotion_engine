@@ -1,3 +1,6 @@
+import pytest
+
+from context import item, basket
 
 """Aceptence test from customer are as follows:
 
@@ -35,13 +38,20 @@ Total  = 280
 """
 
 
-def test_scenario_a():
+@pytest.fixture
+def builder():
+    return item.ItemBuilder()
+
+
+def test_scenario_a(builder):
     """Scenario A is defined as follows:
     
     Scenario A
     (1 * A) + (1 * B) + (1 * C) = 100
     """
-    assert False  # ToDo Complete when code exists
+    items = [builder.get_a(), builder.get_b(), builder.get_c()]
+    bas = basket.Basket(items)
+    assert bas.total == 100
 
 
 def test_scenario_b():
