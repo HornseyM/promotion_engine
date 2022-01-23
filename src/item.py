@@ -13,8 +13,10 @@ class Item:
 
     @property
     def name(self) -> str:
+        """Return the name variable."""
         return self._name
     
     @property
     def price(self) -> int:
+        """Return the price variable."""
         return self._price
